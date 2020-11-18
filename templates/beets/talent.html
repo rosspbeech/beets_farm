@@ -1,0 +1,32 @@
+{% extends 'beets/base.html' %}
+
+{% block title_block %}
+The Talent
+{% endblock %}
+{% block body_block%}
+
+<div class="container-fluid">
+    <div class="row align-self-center">
+        <div class="col-sm-12 my-auto p-1">
+            <div class="display-2 p-2">The Talent</div>
+        </div>
+    </div>
+
+    <div class="container-row align-self-center mt-5">
+        {% for b in personas %}
+        <div class="col-sm-12 my-auto p-2 d-flex justify-content-center">
+            <div class="card text-white my-auto bg-dark mb-3" style="max-width: 24rem;" >
+              <h3 class="card-title m-4">{{b.name}}</h3>
+              <div class="card-body">
+                <div class="card-header h5 mb-3">{{ b.about}}</div>
+                <a href="/beets/persona/{{b.slug}}" class="btn" style="background-color:#95fcee;">View Beets</a>
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

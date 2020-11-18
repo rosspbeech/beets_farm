@@ -1,0 +1,59 @@
+{% extends 'beets/base.html' %}
+
+{% block title_block %}
+{% if persona %}
+{{ persona.name }}
+<div class="container-fluid">
+    {% else %}
+    <div class="row align-self-center">
+        <div class="col-sm-12 my-auto p-1">
+            <div class="display-2 p-2">Unknown Persona</div>
+        </div>
+    </div>
+
+    {% endif %}
+    {% endblock %}
+    {% block body_block %}
+    {% if persona %}
+    <div class="row align-self-center">
+        <div class="col-sm-12 my-auto p-1">
+            <div class="display-2 p-2">{{persona.name}}</div>
+        </div>
+    </div>
+    {% if beets %}
+    <ul>
+        <div class="container-row align-self-center mt-5">
+            {% for beet in beets %}
+            <div class="container-row">
+                <div class="col-sm-12 my-auto p-2 d-flex justify-content-center">
+                    <div class="card text-white my-auto bg-dark mb-3 border border-info" style="max-width:24rem;">
+                        <div class="card-body">
+                            <h2 class="card-title">{{ beet.name}}</h2>
+                            <h4 class="card-text mb-4 p-2">{{beet.about}}</h4>
+                            <audio controls id='myaudio' preload='auto' src="{{ beet.sound_file.url }}"
+                                   type="audio/mpeg"></audio>
+                        </div>
+                        {% ifequal persona.owner request.user.profile %}
+                        <div class="my-2"><a class="btn" href="/beets/edit_beet/{{beet.id}}/"
+                                             style="background-color:#95fcee;">Edit
+                            Beet</a></div>
+                        {% endifequal %}
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- the src is the url of the soundfile which is /the_beets/filename -->
+
+            {% endfor %}
+        </div>
+    </ul>
+    {% else %}
+    <strong>No beets uplaoded by this persona.</strong>
+    {% endif %}
+    {%else%}
+    This persona does not exist.
+    {%endif%}
+
+    {% endblock %}
+</div>

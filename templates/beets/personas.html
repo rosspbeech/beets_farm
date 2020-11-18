@@ -1,0 +1,15 @@
+<ul class="nav flex-column">
+    {% if personas %}
+        {% for p in personas %}
+        {% if p == current_persona %}
+            <li class="nav-item"><strong><a class="nav-link active" href="/beets/persona/{{p.slug}}/"><span data-feather="archive"></span>{{p.name}}</a></strong></li>
+        {% else %}
+        <li class="nav-item" style="color: black">
+            <a class="" href="/beets/persona/{{p.slug}}/"><span data-feather="archive"></span>{{p.name}}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+    {% else %}
+        <li class="nav-item"><strong>There are no Personas.</strong></li>
+    {% endif %}
+</ul>

@@ -1,0 +1,35 @@
+{% extends 'beets/base.html' %}
+
+
+{% block title_block %}
+{{ request.user.username }}
+{% endblock %}
+{% block body_block%}
+<div class="container-row">
+    <div class="display-2 mt-2">{{ request.user.username }}'s Hub</div>
+    <div class="d-flex justify-content-center">
+        <div class="col-12-sm my-auto p-2">
+        {% for p in personas %}
+        <div class="container-row" style="width: 18rem;">
+            <div class="col-sm-12 my-auto p-2 ">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ p.name}}</h2>
+                        <h4 class="card-text mb-4">{{p.about}}</h4>
+                        <a href="/beets/persona/{{p.slug}}/add_beet/" class="btn" style="background-color:#95fcee;">Add a beet</a>
+                        <a href="/beets/persona/{{p.slug}}" class="btn" style="background-color:#95fcee;">View beets</a>
+                    </div>
+                    <div class="my-2"><a href="/beets/persona/{{p.slug}}/edit_persona/" class="btn" style="background-color:#95fcee;">Edit Persona</a></div>
+
+                </div>
+            </div>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

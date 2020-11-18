@@ -1,0 +1,26 @@
+{% extends 'beets/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Register
+{% endblock %}
+
+{% block body_block %}
+<div class="display-2 m-2">Sign Up</div>
+<div class="h4 m-4">Sign up to upload your own beets. </div>
+{% if registered %}
+<div class="h1 m-2">thank you for registering!</div>
+<a href="{% url 'beets:index' %}">Return Home</a>
+{% else %}
+<form id="user_form" method="post" action="{% url 'beets:register' %}" enctype="multipart/form-data">
+    <div class="form-group">
+        {% csrf_token %}
+    <div class="h3">{{user_form.as_p}}</div>
+        <div class="h3">{{profile_form.as_p}}</div>
+    </div>
+    <button class="btn-lg" type="submit" name="submit" value="Register" style="">register</button>
+</form>
+
+
+{% endif %}
+{% endblock %}

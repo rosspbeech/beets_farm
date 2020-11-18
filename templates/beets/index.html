@@ -1,0 +1,39 @@
+{% extends 'beets/base.html' %}
+{% load static %}
+{% block title_block %}
+Homepage
+{% endblock %}
+{% block body_block %}
+
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="col-sm-12 my-auto p-1">
+            <div class="display-2 m-0">BeetsFarm</div>
+            <div class="p-1 my-4">
+                <button id="new_sound" data-beetid="0" class="btn" style="background-color:#95fcee;cursor:pointer;z-index:99;">A New Sound</button>
+            </div>
+            <div>
+                <audio id="sog" preload='auto' controls src="{{s}}" type="audio/mpeg" style="display: none"></audio>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 my-auto p-2 d-flex justify-content-center">
+        <div class="card text-white my-auto bg-dark mb-3 border border-info" id="song-holder" style="display:none;max-width: 24rem;">
+                <div class="card-body">
+                    <h5 class="card-title" id="song-title" ></h5>
+                    <p class="card-text" id="song-artist"></p>
+                    <div class="d-flex justify-content-center "><audio id="song" preload='auto' controls src="{{s}}" type="audio/mpeg" style="display: none"></audio></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}
+
+<!--<audio id='myaudio'  preload= 'auto' controls src="{{ b.sound_file.url }}" type="audio/mpeg"></audio>-->
+
+<!--<audio id='myaudio'  preload= 'auto' controls src="{{ b.sound_file.url }}" type="audio/mpeg"></audio>-->

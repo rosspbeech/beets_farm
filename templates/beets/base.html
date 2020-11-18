@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+{% load beets_template_tags %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="generator" content="Jekyll v3.8.5">
+
+    <title>
+        Beets - {% block title_block %}Meow{% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body class="text-center" style="background-color: #FC95A3;margin: 0; padding: 0;">
+<div class="flex-container">
+
+<header class="mb-auto masthead">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a href="/" class="navbar-brand">BeetsFarm</a>
+        <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbar9">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="navbar9">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'beets:index' %}">Home</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{% url 'beets:about' %}">About</a></li>
+                        <li class="nav-item "><a class="nav-link" href="{% url 'beets:talent' %}">The Talent</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'beets:hub' %}">My hub
+                             </a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'beets:add_persona' %}">Create
+                            Persona </a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'beets:logout' %}?next=/beets/">Logout</a>
+                        </li>
+
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'beets:register' %}">Register Here</a>
+                        </li>
+                        <li class="nav-item "><a class="nav-link" href="{% url 'beets:login' %}">Login</a></li>
+                        {% endif %}
+            </ul>
+        </div>
+    </div>
+    </nav>
+</header>
+
+
+        <div class="container-fluid mt-5">
+            <main role="main" class="mt-5">
+                {% block body_block%}
+                {% endblock %}
+            </main>
+        </div>
+
+
+
+
+<!-- FOOTER -->
+    <footer>
+        <br/>
+
+        <p>&copy; 2020 BeetsFarm by Ross &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+
+<!-- Bootstrap core JavaScript -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/beets-query.js'%}"></script>
+<script src="{% static 'js/beets-ajax.js'%}"></script>
+
+</div>
+</body>
+</html>

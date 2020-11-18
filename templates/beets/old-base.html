@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load beets_template_tags %}
+{% load staticfiles %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Beets - {% block title_block %} BASE
+        {% endblock %}</title>
+</head>
+<body>
+    <div>
+        {% block body_block %}
+        This is default base template text that can be overriden by any page that inherits it
+        {% endblock %}
+        <div>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'beets:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'beets:register' %}">Register</a></li>
+                    <li><a href="{% url 'beets:login' %}">Login</a></li>
+                {% endif %}
+                <li><a href="{% url 'beets:index' %}">Home</a></li>
+                <li><a href="{% url 'beets:about' %}">About</a></li>
+            </ul>
+        </div>
+        <div>
+            {% block sidebar_block %}
+                {% get_persona_list persona %}
+            {% endblock %}
+        </div>
+
+
+    </div>
+    <hr/>
+
+</body>
+</html>
